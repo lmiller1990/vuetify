@@ -144,6 +144,7 @@
     "cssnano": "^6.0.0",
     "cy-mobile-commands": "^0.3.0",
     "cypress": "^12.9.0",
+    "vite-plugin-warmup": "0.0.2",
     "cypress-file-upload": "^5.0.8",
     "cypress-real-events": "^1.7.6",
     "dotenv": "^8.6.0",
