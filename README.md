@@ -316,3 +316,5 @@ Copyright (c) 2016-present Vuetify, LLC
 This project exists thanks to all the people who contribute 😍!
 
 <a href="https://github.com/vuetifyjs/vuetify/graphs/contributors"><img src="https://opencollective.com/vuetify/contributors.svg?width=890&button=false" /></a>
+
+
