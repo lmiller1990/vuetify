@@ -1,6 +1,6 @@
 import path from 'path'
 import fs, { readFileSync } from 'fs'
-import { warmup } from 'vite-plugin-warmup'
+// import { warmup } from 'vite-plugin-warmup'
 import { fileURLToPath } from 'url'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -55,13 +55,13 @@ export default defineConfig(({ mode }) => {
           }
         ]
       }),
-      warmup({
-        // warm up the files and its imported JS modules recursively
-        clientFiles: [
-          './src/**/*.spec.cy.{js,jsx,ts,tsx}',
-          './cypress/support/index.ts',
-        ]
-      })
+      // warmup({
+      //   // warm up the files and its imported JS modules recursively
+      //   clientFiles: [
+      //     './src/**/*.spec.cy.{js,jsx,ts,tsx}',
+      //     './cypress/support/index.ts',
+      //   ]
+      // })
     ],
     define: {
       __VUETIFY_VERSION__: JSON.stringify(vuetifyPackage.version),
