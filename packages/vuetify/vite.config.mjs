@@ -2,12 +2,15 @@ import path from 'path'
 import fs, { readFileSync } from 'fs'
 // import { warmup } from 'vite-plugin-warmup'
 import { fileURLToPath } from 'url'
+
+import fg from 'fast-glob'
+import { loadEnv, defineConfig } from 'vite'
+
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import viteSSR from 'vite-ssr/plugin.js'
-import { loadEnv, defineConfig } from 'vite'
 import Components from 'unplugin-vue-components/vite'
-import fg from 'fast-glob'
+import { warmup } from 'vite-plugin-warmup'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = file => path.resolve(__dirname, file)
@@ -46,7 +49,7 @@ export default defineConfig(({ mode }) => {
       vueJsx({ optimize: false, enableObjectSlots: true }),
       viteSSR(),
       Components({
-        dts: true,
+        dts: !process.env.CYPRESS,
         resolvers: [
           name => {
             if (map.has(name)) {
@@ -55,13 +58,14 @@ export default defineConfig(({ mode }) => {
           }
         ]
       }),
-      // warmup({
-      //   // warm up the files and its imported JS modules recursively
-      //   clientFiles: [
-      //     './src/**/*.spec.cy.{js,jsx,ts,tsx}',
-      //     './cypress/support/index.ts',
-      //   ]
-      // })
+      warmup({
+        clientFiles: process.env.CYPRESS ? [
+          './src/**/*.spec.cy.{js,jsx,ts,tsx}',
+          './cypress/support/index.ts',
+        ] : [
+          './dev/index.html',
+        ],
+      })
     ],
     define: {
       __VUETIFY_VERSION__: JSON.stringify(vuetifyPackage.version),
