@@ -3,7 +3,7 @@
 import { VChip } from '../'
 
 describe('VChip', () => {
-  it('should emit events when closed', () => {
+  it('should emit events when it is closed', () => {
     cy.mount(() => (
       <VChip closable>chip</VChip>
     ))
